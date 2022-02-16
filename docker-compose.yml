@@ -1,0 +1,47 @@
+version: '3.5'
+
+services:
+  bot:
+    build:
+      context: "bot"
+      dockerfile: Dockerfile
+    volumes:
+      - ./bot:/app
+    restart: on-failure
+    tty: true
+    #command: python start_bot.py
+
+  ui:
+    build:
+      context: "bot"
+      dockerfile: Dockerfile
+    volumes:
+      - ./bot:/app
+    ports:
+      - 11500:5000
+    restart: on-failure
+    tty: true
+    #command: python start_ui.py
+
+  db:
+    build:
+      context: "db"
+      dockerfile: Dockerfile
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      TZ: "Europe/Zurich"
+      POSTGRES_PASSWORD: "admin"
+      POSTGRES_USER: "admin"
+    restart: on-failure
+
+networks:
+  default:
+    external: true
+    name: intranet
+
+volumes:
+  db:

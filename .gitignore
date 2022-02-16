@@ -1,0 +1,17 @@
+.env
+*.config.txt
+
+# python
+__pycache__/
+*.pyc
+*.cpython-38.*
+__pycache__.
+
+# macos
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ide
+.idea
+.vscode/*

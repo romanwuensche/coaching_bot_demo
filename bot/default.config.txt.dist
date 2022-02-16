@@ -1,0 +1,12 @@
+[DATABASE]
+database=bot
+hostname=coaching_bot_demo_db_1.intranet
+port=5432
+username=admin
+password=admin
+
+[BOT]
+telegram_api_key=YOUR_TELEGRAM_API_KEY
+
+[UI]
+key=value
